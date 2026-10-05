@@ -38,8 +38,8 @@ namespace ProjektReolmarked.Repositories
                             Aar = (int)reader["Aar"],
                             SamletSalg  = (decimal)reader["SamletSalg"],
                             KomminsionProcent = (decimal)reader["KomminsionProcent"],
-                            KomminsionBeloeb = (decimal)reader["KomminsionBeloe"],
-                            LejeBeloeb = (decimal)reader["LejeBeloeb "],
+                            KomminsionBeloeb = (decimal)reader["KomminsionBeloeb"],
+                            LejeBeloeb = (decimal)reader["LejeBeloeb"],
                             BeloebTilUdbetaling = (decimal)reader["BeloebTilUdbetaling"],
                             Status = (bool)reader["Status"]
                         });
@@ -87,12 +87,19 @@ namespace ProjektReolmarked.Repositories
         //Add = Save
         public void SaveAfregning(Afregning inputAfregning)
         {
-            string query = "INSERT INTO Afeegning (AfregningID) VALUES (@AfregningId)";
+            string query = "INSERT INTO Afregning (Aar, Maaned, SamletSalg, KomminsionProcent, KomminsionBeloeb, LejeBeloeb,BeloebTilUdbetaling, Status) VALUES (@Aar, @Maaned, @SamletSalg, @KomminsionProcent, @KomminsionBeloeb, @LejeBeloeb,@BeloebTilUdbetaling, @Status)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Number", inputAfregning.AfregningID);
+                command.Parameters.AddWithValue("@Aar", inputAfregning.Aar);
+                command.Parameters.AddWithValue("@Maaned", inputAfregning.Maaned);
+                command.Parameters.AddWithValue("@SamletSalg", inputAfregning.SamletSalg);
+                command.Parameters.AddWithValue("@KomminsionProcent", inputAfregning.KomminsionProcent);
+                command.Parameters.AddWithValue("@KomminsionBeloeb", inputAfregning.KomminsionBeloeb);
+                command.Parameters.AddWithValue("@LejeBeloeb", inputAfregning.LejeBeloeb);
+                command.Parameters.AddWithValue("@BeloebTilUdbetaling", inputAfregning.BeloebTilUdbetaling);
+                command.Parameters.AddWithValue("@Status", inputAfregning.Status);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

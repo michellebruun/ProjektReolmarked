@@ -4,6 +4,7 @@ GO
 
 CREATE TABLE dbo.Afregning
 (
+    -- INT IDENTITY(1,1) --> ID starts from 1 and adds up by 1 for every new afregning.
     AfregningId INT IDENTITY(1,1) NOT NULL,
     Aar INT NOT NULL,
     Maaned INT NOT NULL,
