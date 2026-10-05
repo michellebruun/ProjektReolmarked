@@ -9,7 +9,7 @@ namespace ProjektReolmarked.Repositories.Interfaces
     {
         public void SaveAfregning(Afregning inputAfregning);
         public Afregning GetAfregningById(int afregningId);
-        public Afregning[] GetAllAfregninger(); 
+        public IEnumerable<Afregning> GetAll(); 
         
     }
 }

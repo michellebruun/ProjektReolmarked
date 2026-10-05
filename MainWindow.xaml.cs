@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ProjektReolmarked.View;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,12 @@ namespace ProjektReolmarked
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AfregningWindow afregningWindow = new AfregningWindow();
+            afregningWindow.ShowDialog();
         }
     }
 }
