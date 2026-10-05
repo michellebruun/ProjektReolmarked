@@ -11,7 +11,6 @@ namespace ProjektReolmarked.Repositories
         {
 
         }
-
         public Salg GetSalgById(int salgId)
         {
             return null;
