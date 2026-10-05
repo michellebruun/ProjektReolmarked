@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ProjektReolmarked.Models
 {
-    internal class ReolLejer
+    public class ReolLejer
     {
+        public int ReolLejerId { get; set; }
+        public string Navn { get; set; } = "";
+        public string Telefon { get; set; } = "";
+        public string Email { get; set; } = "";
     }
 }

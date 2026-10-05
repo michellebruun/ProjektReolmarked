@@ -27,5 +27,11 @@ namespace ProjektReolmarked
             AfregningWindow afregningWindow = new AfregningWindow();
             afregningWindow.ShowDialog();
         }
+
+        private void ReolLejerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReolLejerWindow reolLejerWindow = new ReolLejerWindow();
+            reolLejerWindow.ShowDialog();
+        }
     }
 }

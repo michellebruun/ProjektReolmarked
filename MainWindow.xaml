@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Afregning" HorizontalAlignment="Left" Margin="444,139,0,0" VerticalAlignment="Top" Height="78" Width="142" Click="Button_Click"/>
+        <Button Content="Reollejere" HorizontalAlignment="Left" Margin="214,139,0,0" VerticalAlignment="Top" Height="78" Width="142" Click="ReolLejerButton_Click"/>
 
     </Grid>
 </Window>
