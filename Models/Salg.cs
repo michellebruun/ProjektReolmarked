@@ -16,4 +16,4 @@ namespace ProjektReolmarked.Models
         public string? Bemaerkning { get; set; }
     }
 }
-``
+
