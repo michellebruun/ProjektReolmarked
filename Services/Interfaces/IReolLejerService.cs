@@ -1,11 +1,11 @@
-﻿using ProjektReolmarked.Models;
+using ProjektReolmarked.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjektReolmarked.Repositories.Interfaces
+namespace ProjektReolmarked.Services.Interfaces
 {
-    internal interface IReolLejerRepository
+    internal interface IReolLejerService
     {
         public void SaveReolLejer(ReolLejer inputReolLejer);
         public ReolLejer? GetReolLejerById(int reolLejerId);
