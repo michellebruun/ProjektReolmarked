@@ -16,8 +16,6 @@ namespace ProjektReolmarked
     {
         public App() 
         {
-            IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            string? ConnectionString = config.GetConnectionString("DefaultConnection");
         }
     }
 
