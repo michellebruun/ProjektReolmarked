@@ -36,6 +36,7 @@ namespace ProjektReolmarked.Repositories
                         {
                             AfregningID = (int)reader["AfregningId"],
                             Aar = (int)reader["Aar"],
+                            Maaned = (int)reader["Maaned"],
                             SamletSalg  = (decimal)reader["SamletSalg"],
                             KomminsionProcent = (decimal)reader["KomminsionProcent"],
                             KomminsionBeloeb = (decimal)reader["KomminsionBeloeb"],
@@ -71,8 +72,8 @@ namespace ProjektReolmarked.Repositories
                             Aar = (int)reader["Aar"],
                             SamletSalg = (decimal)reader["SamletSalg"],
                             KomminsionProcent = (decimal)reader["KomminsionProcent"],
-                            KomminsionBeloeb = (decimal)reader["KomminsionBeloe"],
-                            LejeBeloeb = (decimal)reader["LejeBeloeb "],
+                            KomminsionBeloeb = (decimal)reader["KomminsionBeloeb"],
+                            LejeBeloeb = (decimal)reader["LejeBeloeb"],
                             BeloebTilUdbetaling = (decimal)reader["BeloebTilUdbetaling"],
                             Status = (bool)reader["Status"]
 
