@@ -39,3 +39,18 @@ CREATE TABLE dbo.ReolLejer
     CONSTRAINT CK_ReolLejer_Email CHECK (Email LIKE '%_@_%._%')
 );
 GO
+
+IF OBJECT_ID('dbo.Salg', 'U') IS NOT NULL
+    DROP TABLE dbo.Salg;
+GO
+
+CREATE TABLE dbo.Salg
+(
+    SalgId INT IDENTITY(1,1) NOT NULL,
+    Dato DATETIME NOT NULL,
+    Belob DECIMAL(18,2) NOT NULL,
+    Bemaerkning NVARCHAR(255) NULL,
+
+    CONSTRAINT PK_Salg PRIMARY KEY (SalgId)
+);
+GO
