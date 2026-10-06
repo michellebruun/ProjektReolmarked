@@ -80,4 +80,16 @@ namespace ProjektReolmarked.Repositories
                     {
                         salgListe.Add(new Salg
                         {
-                            
+                            SalgId = (int)reader["SalgId"],
+                            Dato = (DateTime)reader["Dato"],
+                            Belob = (decimal)reader["Belob"],
+                            Bemaerkning = reader["Bemaerkning"] as string
+                        });
+                    }
+                }
+            }
+
+            return salgListe.ToArray();
+        }
+    }
+}
