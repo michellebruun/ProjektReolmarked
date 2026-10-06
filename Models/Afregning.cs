@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjektReolmarked.Models
 {
-    internal class Afregning
+    public class Afregning
     {
         public int AfregningID { get; set; }
 
@@ -12,10 +12,10 @@ namespace ProjektReolmarked.Models
 
         public int Maaned { get; set; }
         public decimal SamletSalg { get; set; }
-        public decimal KomminsionProcent { get; set; }
+        public decimal KommissionProcent { get; set; }
 
         //SamletSalg x KommissionProcent
-        public decimal KomminsionBeloeb { get; set; }
+        public decimal KommissionBeloeb { get; set; }
 
         //Leje gybyr
         public decimal LejeBeloeb { get; set; }
