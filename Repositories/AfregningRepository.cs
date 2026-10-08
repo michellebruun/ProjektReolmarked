@@ -38,8 +38,8 @@ namespace ProjektReolmarked.Repositories
                             Aar = (int)reader["Aar"],
                             Maaned = (int)reader["Maaned"],
                             SamletSalg  = (decimal)reader["SamletSalg"],
-                            KomminsionProcent = (decimal)reader["KomminsionProcent"],
-                            KomminsionBeloeb = (decimal)reader["KomminsionBeloeb"],
+                            KommissionProcent = (decimal)reader["KommissionProcent"],
+                            KommissionBeloeb = (decimal)reader["KommissionBeloeb"],
                             LejeBeloeb = (decimal)reader["LejeBeloeb"],
                             BeloebTilUdbetaling = (decimal)reader["BeloebTilUdbetaling"],
                             Status = (bool)reader["Status"]
@@ -70,10 +70,14 @@ namespace ProjektReolmarked.Repositories
                         {
                             AfregningID = (int)reader["AfregningId"],
                             Aar = (int)reader["Aar"],
+                            Maaned = (int)reader["Maaned"],
                             SamletSalg = (decimal)reader["SamletSalg"],
                             KomminsionProcent = (decimal)reader["KomminsionProcent"],
                             KomminsionBeloeb = (decimal)reader["KomminsionBeloeb"],
                             LejeBeloeb = (decimal)reader["LejeBeloeb"],
+                            KommissionProcent = (decimal)reader["KommissionProcent"],
+                            KommissionBeloeb = (decimal)reader["KommissionBeloeb"],
+                            LejeBeloeb = (decimal)reader["LejeBeloeb "],
                             BeloebTilUdbetaling = (decimal)reader["BeloebTilUdbetaling"],
                             Status = (bool)reader["Status"]
 
@@ -88,7 +92,7 @@ namespace ProjektReolmarked.Repositories
         //Add = Save
         public void SaveAfregning(Afregning inputAfregning)
         {
-            string query = "INSERT INTO Afregning (Aar, Maaned, SamletSalg, KomminsionProcent, KomminsionBeloeb, LejeBeloeb,BeloebTilUdbetaling, Status) VALUES (@Aar, @Maaned, @SamletSalg, @KomminsionProcent, @KomminsionBeloeb, @LejeBeloeb,@BeloebTilUdbetaling, @Status)";
+            string query = "INSERT INTO Afregning (Aar, Maaned, SamletSalg, KommissionProcent, KommissionBeloeb, LejeBeloeb,BeloebTilUdbetaling, Status) VALUES (@Aar, @Maaned, @SamletSalg, @KommissionProcent, @KommissionBeloeb, @LejeBeloeb,@BeloebTilUdbetaling, @Status)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -96,8 +100,8 @@ namespace ProjektReolmarked.Repositories
                 command.Parameters.AddWithValue("@Aar", inputAfregning.Aar);
                 command.Parameters.AddWithValue("@Maaned", inputAfregning.Maaned);
                 command.Parameters.AddWithValue("@SamletSalg", inputAfregning.SamletSalg);
-                command.Parameters.AddWithValue("@KomminsionProcent", inputAfregning.KomminsionProcent);
-                command.Parameters.AddWithValue("@KomminsionBeloeb", inputAfregning.KomminsionBeloeb);
+                command.Parameters.AddWithValue("@KommissionProcent", (inputAfregning.KommissionProcent*100));
+                command.Parameters.AddWithValue("@KommissionBeloeb", inputAfregning.KommissionBeloeb);
                 command.Parameters.AddWithValue("@LejeBeloeb", inputAfregning.LejeBeloeb);
                 command.Parameters.AddWithValue("@BeloebTilUdbetaling", inputAfregning.BeloebTilUdbetaling);
                 command.Parameters.AddWithValue("@Status", inputAfregning.Status);

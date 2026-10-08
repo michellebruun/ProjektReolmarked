@@ -10,5 +10,10 @@ namespace ProjektReolmarked.Models
         public string Navn { get; set; } = "";
         public string Telefon { get; set; } = "";
         public string Email { get; set; } = "";
+
+        public override string ToString()
+        {
+            return Navn;
+        }
     }
 }
