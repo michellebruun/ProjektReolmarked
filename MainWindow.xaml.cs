@@ -33,5 +33,10 @@ namespace ProjektReolmarked
             ReolLejerWindow reolLejerWindow = new ReolLejerWindow();
             reolLejerWindow.ShowDialog();
         }
+        private void UdlejButton_Click(object sender, RoutedEventArgs e)
+        {
+            UdlejWindow udlejWindow = new UdlejWindow();
+            udlejWindow.ShowDialog();
+        }
     }
 }

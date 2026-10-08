@@ -116,6 +116,43 @@ namespace ProjektReolmarked.Database
                             PRIMARY KEY (SalgId)
                     );
                 END;
+
+                IF OBJECT_ID('dbo.Reol', 'U') IS NULL
+                BEGIN
+                    CREATE TABLE dbo.Reol
+                    (
+                        ReolId INT NOT NULL,
+                        Placering INT NOT NULL,
+                        Status BIT NOT NULL,
+                        ReolLejerId INT NULL,
+                        Type NVARCHAR(100) NULL,
+
+                        CONSTRAINT PK_Reol
+                            PRIMARY KEY (ReolId),
+
+                        CONSTRAINT FK_Reol_ReolLejer
+                            FOREIGN KEY (ReolLejerId)
+                            REFERENCES dbo.ReolLejer(ReolLejerId)
+                            ON DELETE CASCADE
+                    );
+                END;
+
+                IF NOT EXISTS (SELECT 1 FROM dbo.Reol)
+                BEGIN
+                    INSERT INTO dbo.Reol (ReolId, Placering, Status, ReolLejerId, Type)
+                    SELECT
+                        n,
+                        n,
+                        0,
+                        NULL,
+                        NULL
+                    FROM
+                    (
+                        SELECT TOP (80)
+                            ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
+                        FROM sys.all_objects
+                    ) AS Numbers;
+                END;
             ";
 
             using SqlCommand command =
