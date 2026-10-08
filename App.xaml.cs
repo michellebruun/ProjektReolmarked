@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using ProjektReolmarked.Database;
 using System.Configuration;
 using System.Data;
 using System.Net.NetworkInformation;
@@ -14,8 +15,14 @@ namespace ProjektReolmarked
     // Test commit
     public partial class App : Application
     {
-        public App() 
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
+            DatabaseInitializer databaseInitializer =
+                new DatabaseInitializer();
+
+            databaseInitializer.Initialize();
         }
     }
 

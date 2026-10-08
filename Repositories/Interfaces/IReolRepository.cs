@@ -8,6 +8,7 @@ namespace ProjektReolmarked.Repositories.Interfaces
     internal interface IReolRepository
     {
         public void SaveReol(Reol inputReol);
+        void UpdateReol(Reol reol);
         public Reol GetReolById(int ReolId);
         public Reol[] GetAllReoler();
     }

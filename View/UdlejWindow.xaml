@@ -1,0 +1,349 @@
+﻿<Window x:Class="ProjektReolmarked.View.UdlejWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektReolmarked.View"
+        mc:Ignorable="d"
+        Title="Udlej"
+        Height="700"
+        Width="900"
+        Background="#F5F5F7">
+
+    <Grid Margin="30">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- REOLER -->
+
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto">
+
+            <ItemsControl ItemsSource="{Binding Reoler}">
+
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Button Width="100"
+                                Height="100"
+                                Margin="10"
+                                Padding="0"
+                                BorderThickness="1"
+                                Command="{Binding DataContext.VaelgReolCommand,
+                                                  RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}">
+
+                            <Button.Style>
+
+                                <Style TargetType="Button">
+
+                                    <!-- Status 0 = available -->
+                                    <Setter Property="Background"
+                                            Value="#B8E6B8"/>
+
+                                    <Setter Property="BorderBrush"
+                                            Value="#D2D2D7"/>
+
+                                    <Style.Triggers>
+
+                                        <!-- Status 1 = rented -->
+                                        <DataTrigger Binding="{Binding Status}"
+                                                     Value="True">
+
+                                            <Setter Property="Background"
+                                                    Value="#F5B5B5"/>
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </Button.Style>
+
+                            <StackPanel VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+
+                                <TextBlock Text="{Binding ReolId}"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Reol"
+                                           FontSize="14"
+                                           Foreground="#666666"
+                                           HorizontalAlignment="Center"/>
+
+                            </StackPanel>
+
+                        </Button>
+
+                    </DataTemplate>
+
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+        </ScrollViewer>
+
+
+        <!-- FORM / INFO -->
+
+        <Border Grid.Row="1"
+                Margin="10,20,10,0"
+                Padding="20"
+                Background="White"
+                BorderBrush="#D2D2D7"
+                BorderThickness="1"
+                CornerRadius="12">
+
+            <Border.Style>
+
+                <Style TargetType="Border">
+
+                    <Setter Property="Visibility"
+                            Value="Collapsed"/>
+
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding VisForm}"
+                                     Value="True">
+
+                            <Setter Property="Visibility"
+                                    Value="Visible"/>
+
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+
+            </Border.Style>
+
+
+            <Grid>
+
+
+                <!-- AVAILABLE REOL FORM -->
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.Style>
+
+                        <Style TargetType="Grid">
+
+                            <Setter Property="Visibility"
+                                    Value="Visible"/>
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding VisUdlejetInfo}"
+                                             Value="True">
+
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed"/>
+
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </Grid.Style>
+
+
+                    <!-- ReolId -->
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="ReolId:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding ValgtReol.ReolId}"
+                               Margin="0,5"/>
+
+
+                    <!-- ReolLejerId -->
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Reol Lejer:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <ComboBox Grid.Row="1"
+                              Grid.Column="1"
+                              ItemsSource="{Binding ReolLejere}"
+                              SelectedValuePath="ReolLejerId"
+                              SelectedValue="{Binding ValgtReol.ReolLejerId}"
+                              Margin="0,5"
+                              Width="250"
+                              HorizontalAlignment="Left">
+
+                        <ComboBox.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <TextBlock>
+
+                                    <Run Text="{Binding ReolLejerId}"/>
+                                    <Run Text=" - "/>
+                                    <Run Text="{Binding Navn}"/>
+
+                                </TextBlock>
+
+                            </DataTemplate>
+
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
+
+
+                    <!-- Type -->
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Type:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <ComboBox Grid.Row="2"
+                              Grid.Column="1"
+                              ItemsSource="{Binding ReolTyper}"
+                              SelectedItem="{Binding ValgtReol.Type}"
+                              Margin="0,5"
+                              Width="250"
+                              HorizontalAlignment="Left"/>
+
+
+                    <!-- Udlej -->
+
+                    <Button Grid.Row="3"
+                            Grid.Column="1"
+                            Content="Udlej"
+                            Command="{Binding UdlejCommand}"
+                            Width="250"
+                            Height="40"
+                            Margin="0,15,0,0"
+                            HorizontalAlignment="Left"/>
+
+                </Grid>
+
+
+                <!-- RENTED REOL INFO -->
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.Style>
+
+                        <Style TargetType="Grid">
+
+                            <Setter Property="Visibility"
+                                    Value="Collapsed"/>
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding VisUdlejetInfo}"
+                                             Value="True">
+
+                                    <Setter Property="Visibility"
+                                            Value="Visible"/>
+
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </Grid.Style>
+
+
+                    <!-- ReolId -->
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="ReolId:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding ValgtReol.ReolId}"
+                               Margin="0,5"/>
+
+
+                    <!-- ReolLejerId -->
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Reol Lejer:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding ValgtReolLejerInfo}"
+                               Margin="0,5"/>
+
+
+                    <!-- Type -->
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Type:"
+                               FontWeight="Bold"
+                               Margin="0,5"/>
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Text="{Binding ValgtReol.Type}"
+                               Margin="0,5"/>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</Window>
